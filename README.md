@@ -1,68 +1,40 @@
-# Système de gestion de café
+### Système de Gestion de Café – Étude de Cas (TypeScript)
+ Description du projet
+Ce projet est une simulation d’un système de gestion pour un café, développé en TypeScript. Il permet de :
 
-## Description
+Gérer les différentes commandes de café.
 
-Ce projet implémente un système de gestion pour un café, conçu pour gérer les commandes de café, les ingrédients, et les personnalisations. Il permet aux utilisateurs de créer des commandes de café avec différentes options de personnalisation, et utilise une base de données IndexedDB pour stocker les données de manière locale. Le projet met également en œuvre le modèle DAO (Data Access Object) pour gérer l'accès aux données de manière structurée.
+Ajouter dynamiquement des personnalisations (comme du lait, du sucre, etc.).
 
-## Fonctionnalités principales
+Suivre les ingrédients disponibles dans l’inventaire.
 
-- **Gestion des commandes de café** : Permet de créer des commandes avec différents types de café (par exemple, Espresso, Latte, Cappuccino).
-- **Personnalisation des commandes** : Ajout dynamique de personnalisations comme lait, sucre, crème chantilly, etc.
-- **Stockage local des données** : Utilisation de IndexedDB pour stocker toutes les entités du système (comme les commandes, les types de café, et les personnalisations).
-- **DAO (Data Access Object)** : Le modèle DAO est utilisé pour gérer les interactions avec la base de données de manière centralisée.
-- **Opérations asynchrones** : Utilisation de `async/await` pour gérer les opérations asynchrones de manière claire et efficace.
+Sauvegarder les données localement à l’aide de IndexedDB.
 
-## Structure du projet
+Utiliser des concepts avancés comme les Design Patterns (Singleton, Factory, Decorator) et le modèle DAO pour organiser l’accès aux données.
 
-### 1. Modèle DAO
-Le modèle DAO est utilisé pour centraliser la gestion des opérations de lecture et d'écriture dans IndexedDB. Ce modèle permet de séparer la logique métier de l'accès aux données.
+L’objectif de ce projet est de construire un système modulaire, maintenable et testable, tout en respectant des contraintes de conception modernes.
 
-### 2. Entités du système
-Le système gère plusieurs entités, notamment :
-- **Coffee** : Représente les différents types de café (Espresso, Latte, etc.).
-- **Customization** : Représente les différentes personnalisations disponibles (lait, sucre, etc.).
-- **Order** : Représente une commande de café avec les options de personnalisation et les informations de la commande.
-- **InventoryManager** : Assure une gestion centralisée des ingrédients disponibles pour la préparation des cafés.
+#### Fonctionnalités principales
+Création de différents types de café (Espresso, Latte, Cappuccino) via une fabrique (factory).
 
-### 3. Stockage dans IndexedDB
-Les entités du système sont stockées dans IndexedDB pour garantir la persistance des données. Les opérations de lecture et d'écriture sont effectuées de manière asynchrone pour garantir la réactivité du système.
+Ajout de personnalisations sans modifier les classes de base grâce au pattern Decorator.
 
-## Prérequis
+Stockage des commandes et des ingrédients dans IndexedDB.
 
-- **Node.js** : Ce projet utilise Node.js pour exécuter le code.
-- **TypeScript** : Le projet est écrit en TypeScript pour bénéficier de la sécurité de type.
-- **IndexedDB** : Utilisé pour le stockage local des données dans le navigateur.
+Utilisation de promesses et de async/await pour gérer les opérations asynchrones.
 
-## Installation
+Une seule instance du gestionnaire d'inventaire (InventoryManager) via le pattern Singleton.
 
-1. **Cloner le dépôt** :
-    ```bash
-    git clone https://github.com/votre-utilisateur/votre-repository.git
-    cd votre-repository
-    ```
+Structure du code claire avec séparation en DAO, modèles, services, etc.
 
-2. **Installer les dépendances** :
-    ```bash
-    npm install
-    ```
-
-3. **Compiler le projet TypeScript** :
-    ```bash
-    npx tsc
-    ```
-
-4. **Exécuter le projet** :
-    Une fois le projet compilé, vous pouvez exécuter le fichier JavaScript généré avec la commande suivante :
-    ```bash
-    node dist/index.js
-    ```
-
-## Fonctionnalités supplémentaires à implémenter
-
-- **Modification et suppression de commandes** : Ajouter des fonctionnalités pour modifier et supprimer les commandes de café dans la base de données.
-- **Interface utilisateur interactive** : Ajouter une interface utilisateur web pour une expérience utilisateur plus fluide (par exemple, avec React, Vue.js ou Angular).
-- **Gestion des erreurs** : Renforcer la gestion des erreurs, notamment pour gérer les cas où IndexedDB est inaccessible ou vide.
-
-## Contribuer
-
-Les contributions sont les bienvenues ! Veuillez soumettre une pull request ou ouvrir une issue pour signaler des bugs ou proposer des améliorations.
+### Résultat obtenu
+Lors de l'exécution du projet, voici un exemple de sortie affichée dans la console :
+Coffee Beans in inventory: 100
+Order saved: {
+  coffee: Coffee { id: 1, name: 'Espresso', size: 'Small', price: 2.5 },
+  customizations: [
+    Customization { name: 'Milk', price: 0.5 },
+    Customization { name: 'Sugar', price: 0.2 }
+  ],
+  date: '2025-04-11T21:01:05.121Z'
+}
